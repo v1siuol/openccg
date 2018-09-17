@@ -11,6 +11,38 @@ $Revision: 1.6 $, $Date: 2010/09/13 04:45:19 $
   xsi:noNamespaceSchemaLocation="../lexicon.xsd"
 >
 
+  <!-- ==================== The "NP" family ===================== -->
+  <family name="NP" pos="Np">
+    <entry name="Primary">
+      <atomcat type="np">
+        <fs id="2">
+          <feat attr="num">
+            <featvar name="NUM"/>
+          </feat>
+          <feat attr="pers">
+            <featvar name="PERS:pers-vals"/>
+          </feat>
+          <feat attr="case">
+            <featvar name="CASE"/>
+          </feat>
+          <feat attr="index">
+            <lf>
+              <nomvar name="X"/>
+            </lf>
+          </feat>
+        </fs>
+        <lf>
+          <satop nomvar="X:sem-obj">
+            <prop name="[*DEFAULT*]"/>
+          </satop>
+        </lf>
+      </atomcat>
+    </entry>
+    <member stem="np_person"/>
+    <member stem="np_thing"/>
+
+  </family>
+
   <!-- ==================== The "Noun" family ===================== -->
   <!--
        Each noun has part of speech ("pos") N, atomic category n, a
