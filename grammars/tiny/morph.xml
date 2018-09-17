@@ -32,6 +32,9 @@ $Revision: 1.8 $, $Date: 2010/09/13 04:37:19 $
   <entry pos="Pro" word="they" stem="pro3n" macros="@3rd @pl @nom @pl-X"/>
   <entry pos="Pro" word="them" stem="pro3n" macros="@3rd @pl @acc @pl-X"/>
 
+  <!-- NP -->
+  <entry pos="Np" word="completeness" stem="np_thing" class="thing" macros="@3rd @uc @acc @uc-X"/>  <!-- not working -->
+  <entry pos="Np" word="Marcel" stem="np_person" class="animate-being" macros="@3rd @sg @nom @sg-X"/>  <!-- not working -->
 
   <!-- ========================== Nouns ============================ -->
   <entry pos="N" word="book" class="thing" macros="@sg @sg-X"/>
@@ -44,8 +47,6 @@ $Revision: 1.8 $, $Date: 2010/09/13 04:37:19 $
   <entry pos="N" word="policemen" stem="policeman" class="person" macros="@pl @pl-X"/>
   <entry pos="N" word="teacher" class="person" macros="@sg @sg-X"/>
   <entry pos="N" word="teachers" stem="teacher" class="person" macros="@pl @pl-X"/>
-  <!-- Is completeness a thing? uncountable -->
-  <entry pos="N" word="completeness" class="thing" macros="@uc @uc-X"/>
 
   <!-- ======================== Adjectives ========================= -->
   <entry pos="Adj" word="blue"/>
