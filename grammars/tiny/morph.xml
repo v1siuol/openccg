@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
+<!--
 This file contains the morph entries.
 
-Copyright (C) 2005 David Reitter and University of Edinburgh (Michael White) 
-$Revision: 1.8 $, $Date: 2010/09/13 04:37:19 $ 
+Copyright (C) 2005 David Reitter and University of Edinburgh (Michael White)
+$Revision: 1.8 $, $Date: 2010/09/13 04:37:19 $
 -->
-<morph 
+<morph
   name="tiny"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:noNamespaceSchemaLocation="../morph.xsd"
 >
 
@@ -17,7 +17,7 @@ $Revision: 1.8 $, $Date: 2010/09/13 04:37:19 $
   <entry pos="Det" word="the"/>
   <entry pos="Det" word="some"/>
 
-  
+
   <!-- ======================== Pronouns =========================== -->
   <entry pos="Pro" word="I" stem="pro1" class="animate-being" macros="@1st @sg @nom @sg-X"/>
   <entry pos="Pro" word="me" stem="pro1" class="animate-being" macros="@1st @sg @acc @sg-X"/>
@@ -32,7 +32,7 @@ $Revision: 1.8 $, $Date: 2010/09/13 04:37:19 $
   <entry pos="Pro" word="they" stem="pro3n" macros="@3rd @pl @nom @pl-X"/>
   <entry pos="Pro" word="them" stem="pro3n" macros="@3rd @pl @acc @pl-X"/>
 
-  
+
   <!-- ========================== Nouns ============================ -->
   <entry pos="N" word="book" class="thing" macros="@sg @sg-X"/>
   <entry pos="N" word="books" stem="book" class="thing" macros="@pl @pl-X"/>
@@ -44,7 +44,8 @@ $Revision: 1.8 $, $Date: 2010/09/13 04:37:19 $
   <entry pos="N" word="policemen" stem="policeman" class="person" macros="@pl @pl-X"/>
   <entry pos="N" word="teacher" class="person" macros="@sg @sg-X"/>
   <entry pos="N" word="teachers" stem="teacher" class="person" macros="@pl @pl-X"/>
-
+  <!-- Is completeness a thing? uncountable -->
+  <entry pos="N" word="completeness" class="thing" macros="@uc @uc-X"/>
 
   <!-- ======================== Adjectives ========================= -->
   <entry pos="Adj" word="blue"/>
@@ -60,8 +61,8 @@ $Revision: 1.8 $, $Date: 2010/09/13 04:37:19 $
   <!-- ======================= Prepositions ======================== -->
   <entry pos="Prep" word="for"/>
 
-  
-  <!-- ========================== Verbs ============================ -->  
+
+  <!-- ========================== Verbs ============================ -->
   <entry pos="V" word="buy" macros="@pres @non-3rd @sg"/>
   <entry pos="V" word="buys" stem="buy" macros="@pres @3rd @sg"/>
   <entry pos="V" word="buy" macros="@pres @pl"/>
@@ -72,10 +73,14 @@ $Revision: 1.8 $, $Date: 2010/09/13 04:37:19 $
   <entry pos="V" word="rents" stem="rent" macros="@pres @3rd @sg"/>
   <entry pos="V" word="rented" stem="rent" macros="@past"/>
 
-  
-  
-  <!-- ========================== Macros =========================== -->  
-  <!-- ============================================================= -->  
+  <entry pos="V" word="prove" macros="@pres @non-3rd @sg"/>
+  <entry pos="V" word="prove" macros="@pres @pl"/>
+  <entry pos="V" word="proves" stem="prove" macros="@pres @3rd @sg"/>
+  <entry pos="V" word="proved" stem="prove" macros="@past"/>
+
+
+  <!-- ========================== Macros =========================== -->
+  <!-- ============================================================= -->
 
   <!--
     The macro @non-3rd supplies a syntactic number value that is
@@ -93,14 +98,14 @@ $Revision: 1.8 $, $Date: 2010/09/13 04:37:19 $
   <macro name="@non-3rd">
      <fs id="2" attr="pers" val="non-3rd"/>
   </macro>
-  
+
   <macro name="@nom">
     <fs id="2" attr="case" val="nom"/>
   </macro>
   <macro name="@acc">
     <fs id="2" attr="case" val="acc"/>
   </macro>
-  
+
   <macro name="@sg">
      <fs id="2">
        <feat attr="num" val="sg"/>
@@ -111,8 +116,13 @@ $Revision: 1.8 $, $Date: 2010/09/13 04:37:19 $
        <feat attr="num" val="pl"/>
      </fs>
   </macro>
+  <macro name="@uc">
+     <fs id="2">
+       <feat attr="num" val="uc"/>
+     </fs>
+  </macro>
 
-  <!-- 
+  <!--
     The macros @sg-X and @pl-X add a semantic number feature on the
     nominal head X to the LFs of nouns and pronouns
   -->
@@ -134,7 +144,16 @@ $Revision: 1.8 $, $Date: 2010/09/13 04:37:19 $
       </satop>
     </lf>
   </macro>
-  
+  <macro name="@uc-X">
+    <lf>
+      <satop nomvar="X">
+        <diamond mode="num">
+          <prop name="uc"/>
+        </diamond>
+      </satop>
+    </lf>
+  </macro>
+
   <macro name="@past">
     <lf>
       <satop nomvar="E">

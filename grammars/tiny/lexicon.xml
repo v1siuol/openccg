@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
+<!--
 This file contains the lexical families.
 
-Copyright (C) 2005 David Reitter and University of Edinburgh (Michael White) 
-$Revision: 1.6 $, $Date: 2010/09/13 04:45:19 $ 
+Copyright (C) 2005 David Reitter and University of Edinburgh (Michael White)
+$Revision: 1.6 $, $Date: 2010/09/13 04:45:19 $
 -->
-<ccg-lexicon 
+<ccg-lexicon
   name="tiny"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:noNamespaceSchemaLocation="../lexicon.xsd"
 >
 
   <!-- ==================== The "Noun" family ===================== -->
-  <!-- 
+  <!--
        Each noun has part of speech ("pos") N, atomic category n, a
        number attribute, and an index term X that links it to its
        meaning.
-       
+
        The feature structure is labeled with id="2", which is referenced
        by the macros in morph.xml.
-       
+
        The meaning is @X:sem-obj([*DEFAULT*]), where the word's
        predicate (typically just the stem) is substituted for
-       [*DEFAULT*].  The nominal X is specified to be of type sem-obj, 
+       [*DEFAULT*].  The nominal X is specified to be of type sem-obj,
        the root of the semantic hierarchy in types.xml.
-       
+
        There is just one type of category (the "Primary" category). This
        is an open class.
   -->
@@ -50,13 +50,13 @@ $Revision: 1.6 $, $Date: 2010/09/13 04:45:19 $
     </entry>
   </family>
 
-  
+
   <!-- ==================== The "ProNP" family ===================== -->
-  <!-- 
-       Pronominal noun phrases have category np and number, person 
-       and case attributes.  The person attribute is restricted to 
+  <!--
+       Pronominal noun phrases have category np and number, person
+       and case attributes.  The person attribute is restricted to
        come from pers-vals, defined in types.xml.
-       
+
        This is a closed class.
   -->
   <family name="ProNP" pos="Pro" closed="true">
@@ -92,23 +92,23 @@ $Revision: 1.6 $, $Date: 2010/09/13 04:45:19 $
     <member stem="pro3n"/>
   </family>
 
-  
+
   <!-- ===================== The "Det" family ====================== -->
-  <!-- 
+  <!--
        The category is np/n, whereby the logical form for the noun
        phrase is built by taking the meaning of the n argument and
        augmenting it with the semantic feature @X(<det>[*DEFAULT*]),
        where X is the semantic head.
-       
+
        For realization, relevant determiners are looked up via the
        relation <det>, as specified by indexRel="det".
-       
+
        Note that we use id="2" for both feature structures, which causes
        the noun features to percolate up to the resulting np category
        (via unification in derivations).
-       
+
        There is just one type of category (the "Primary" category). This
-       is a closed class with three members. 
+       is a closed class with three members.
   -->
   <family name="Det" pos="Det" closed="true" indexRel="det">
     <entry name="Primary">
@@ -147,16 +147,16 @@ $Revision: 1.6 $, $Date: 2010/09/13 04:45:19 $
     <member stem="some"/>
   </family>
 
-  
+
   <!-- ===================== The "Adj" family ====================== -->
-  <!-- 
+  <!--
        The category is n/n, whereby the logical form for the noun
        is modified by adding the property supplied by the adjective.
 
-       To support adverbial modification, the nominal for the adjective's 
-       meaning (M) is made available on the result category using the mod-index 
-       feature.  Note that the semantic head (X) is inherited from the modified 
-       noun, but the mod-index is allowed to change, to allow multiple adjectival 
+       To support adverbial modification, the nominal for the adjective's
+       meaning (M) is made available on the result category using the mod-index
+       feature.  Note that the semantic head (X) is inherited from the modified
+       noun, but the mod-index is allowed to change, to allow multiple adjectival
        modifiers.
 
        This is an open class.
@@ -195,11 +195,11 @@ $Revision: 1.6 $, $Date: 2010/09/13 04:45:19 $
     </entry>
   </family>
 
-  
+
   <!-- ===================== The "AdvIntens" family ====================== -->
-  <!-- 
-       The category is n/n/(n/n), whereby the logical form for the adjective  
-       is modified by adding the magnitude property supplied by the intensifying 
+  <!--
+       The category is n/n/(n/n), whereby the logical form for the adjective
+       is modified by adding the magnitude property supplied by the intensifying
        adverb.
 
        Note that the adverb uses the mod-index feature to supply its predicate.
@@ -262,17 +262,17 @@ $Revision: 1.6 $, $Date: 2010/09/13 04:45:19 $
     <member stem="very"/>
   </family>
 
-  
+
   <!-- ================== The "Prep-Nom" family ==================== -->
-  <!-- 
-       This family defines the category pp[X,lex=[*DEFAULT*]]/np[X] 
+  <!--
+       This family defines the category pp[X,lex=[*DEFAULT*]]/np[X]
        for prepositions that essentially act as case markers.
-       
-       For realization, the indexRel is *NoSem* to indicate that it 
+
+       For realization, the indexRel is *NoSem* to indicate that it
        has empty semantics.
-       
-       The feature structure for the PP atom cat inherits its values 
-       from the feature structure with id=3, ie the NP cat, adding 
+
+       The feature structure for the PP atom cat inherits its values
+       from the feature structure with id=3, ie the NP cat, adding
        the "lex" feature with the value filled in by the word stem.
   -->
   <family name="Prep-Nom" pos="Prep" closed="true" indexRel="*NoSem*">
@@ -293,25 +293,25 @@ $Revision: 1.6 $, $Date: 2010/09/13 04:45:19 $
     </entry>
     <member stem="for"/>
   </family>
-  
-  
+
+
   <!-- =============== The "Transitive Verb" family ================ -->
-  <!-- 
+  <!--
        This family defines the category s\np/np. The result category (s)
        has a feature structure with id=1 (this is referenced in the
        macros in the morph.xml file), and has an index (E for event
        variable).
-       
+
        The subject NP has a feature structure with id=2, and has number,
        person, and case attributes, where case is required to be
        nominative. Its index is X, which is used to unify the nominal of
        the subject into the Actor slot in the logical form, ie
        @E:action(<Actor>X:animate-being). Note that the types of the
        nominals are specified in the LF.
-       
+
        The object NP is similar, but with the case attribute set to
        accusative, and unifies the index Y into the Patient role in the
-       LF. 
+       LF.
   -->
   <family name="TransitiveVerbs" pos="V" closed="true">
     <entry name="Primary">
@@ -368,28 +368,29 @@ $Revision: 1.6 $, $Date: 2010/09/13 04:45:19 $
     </entry>
     <member stem="buy"/>
     <member stem="rent"/>
+    <member stem="prove"/>
   </family>
 
-  
+
   <!-- ========== The "Ditransitive/Beneficiary" family ============ -->
-  <!-- 
-       This family defines the categories 
-       
-          1. s[E]\np[X]/np[Y]/np[Z] 
+  <!--
+       This family defines the categories
+
+          1. s[E]\np[X]/np[Y]/np[Z]
           2. s[E]\np[X]/pp[Z,for]/np[Y]
-          
+
        with semantics that adds
-       
-          @E:action(<Beneficiary>Z:animate-being) 
-       
+
+          @E:action(<Beneficiary>Z:animate-being)
+
        to the meaning of the corresponding transitive verb.
-       
+
        Here the category 1 is the ditransitive NP NP category, with
        np[Z] as the indirect object and np[Y] the direct object, and
        category 2 is the NP PP-for alternation with np[Y] again as the
        direct object, and the pp[Z,for] headed by the preposition "for"
        supplying the same argument as the indirect object in the
-       ditransitive category. 
+       ditransitive category.
   -->
   <family name="DitransitiveBeneficiaryVerbs" pos="V" closed="true">
     <entry name="DTV">
@@ -526,6 +527,7 @@ $Revision: 1.6 $, $Date: 2010/09/13 04:45:19 $
     </entry>
     <member stem="buy"/>
     <member stem="rent"/>
+    <member stem="prove"/>
   </family>
-  
+
 </ccg-lexicon>
